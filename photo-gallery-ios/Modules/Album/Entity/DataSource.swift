@@ -19,5 +19,5 @@ struct DataSource {
         return sections[section].items?.count
     }
     
-    func 
+    func
 }

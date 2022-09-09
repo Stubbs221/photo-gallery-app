@@ -11,12 +11,29 @@ class AlbumView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupCollection()
         // Do any additional setup after loading the view.
     }
     
     func setupCollection() {
         
+        let dataSource = DataSource(sections: [.all, .smartAlbums, .userCollections])
+        let configurator = Configurator { (cell, model: String, collectionView, indexPath) -> AlbumViewCell in
+            cell.albumCount.text = model
+            cell.albumTitle.text = model
+            return cell
+        }
+        
+        let collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
+        
+        add(child: collection, container: view)
+    }
+    
+    func add(child: UIViewController, container: UIView, configure: (_ childView: UIView) -> Void = { _ in }) {
+        addChild(child)
+        container.addSubview(child.view)
+        configure(child.view)
+        child.didMove(toParent: self)
     }
     /*
     // MARK: - Navigation
