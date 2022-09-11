@@ -7,8 +7,18 @@
 
 import UIKit
 
-class AlbumView: UIViewController {
+protocol AlbumViewInput {
+    var output: AlbumViewOutput? { get set }
+}
 
+protocol AlbumViewOutput {
+    
+}
+
+class AlbumView: UIViewController, AlbumViewInput {
+    
+    var output: AlbumViewOutput?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()

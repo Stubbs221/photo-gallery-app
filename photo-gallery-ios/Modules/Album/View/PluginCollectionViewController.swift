@@ -40,7 +40,7 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = dataSource.
+        
         
         return configurator.configuredCell(for: item, collectionView: collectionView, indexPath: indexPath)
     

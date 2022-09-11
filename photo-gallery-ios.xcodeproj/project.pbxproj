@@ -21,6 +21,10 @@
 		1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */; };
 		1B8FE8DC28C8D0E90081CF08 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */; };
 		1BF6DAC928CBB0FE00A39EBA /* AlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6DAC828CBB0FE00A39EBA /* AlbumViewCell.swift */; };
+		1BF6DB1528CE72A800A39EBA /* AlbumModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6DB1428CE72A800A39EBA /* AlbumModuleBuilder.swift */; };
+		1BF6DB1728CE735700A39EBA /* AlbumPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6DB1628CE735700A39EBA /* AlbumPresenter.swift */; };
+		1BF6DB1928CE73D500A39EBA /* AlbumRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6DB1828CE73D500A39EBA /* AlbumRouter.swift */; };
+		1BF6DB1B28CE745300A39EBA /* AlbumInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6DB1A28CE745300A39EBA /* AlbumInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginCollectionViewController.swift; sourceTree = "<group>"; };
 		1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		1BF6DAC828CBB0FE00A39EBA /* AlbumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewCell.swift; sourceTree = "<group>"; };
+		1BF6DB1428CE72A800A39EBA /* AlbumModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModuleBuilder.swift; sourceTree = "<group>"; };
+		1BF6DB1628CE735700A39EBA /* AlbumPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPresenter.swift; sourceTree = "<group>"; };
+		1BF6DB1828CE73D500A39EBA /* AlbumRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRouter.swift; sourceTree = "<group>"; };
+		1BF6DB1A28CE745300A39EBA /* AlbumInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		1B809F9928C8BD4B000D639A /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6DB1428CE72A800A39EBA /* AlbumModuleBuilder.swift */,
 				1B809F9F28C8BD8C000D639A /* Entity */,
 				1B809F9E28C8BD6A000D639A /* Interactor */,
 				1B809F9D28C8BD65000D639A /* Router */,
@@ -127,6 +136,7 @@
 		1B809F9A28C8BD54000D639A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6DB1628CE735700A39EBA /* AlbumPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 		1B809F9D28C8BD65000D639A /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6DB1828CE73D500A39EBA /* AlbumRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -151,6 +162,7 @@
 		1B809F9E28C8BD6A000D639A /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				1BF6DB1A28CE745300A39EBA /* AlbumInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -245,12 +257,16 @@
 			files = (
 				1B809FA728C8C313000D639A /* DataSource.swift in Sources */,
 				1B8FE8DC28C8D0E90081CF08 /* Configurator.swift in Sources */,
+				1BF6DB1B28CE745300A39EBA /* AlbumInteractor.swift in Sources */,
 				1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */,
+				1BF6DB1528CE72A800A39EBA /* AlbumModuleBuilder.swift in Sources */,
+				1BF6DB1728CE735700A39EBA /* AlbumPresenter.swift in Sources */,
 				1B809FA528C8C1C7000D639A /* AlbumView.swift in Sources */,
 				1BF6DAC928CBB0FE00A39EBA /* AlbumViewCell.swift in Sources */,
 				042E3A9528ACD5B700D50AC3 /* ViewController.swift in Sources */,
 				1B809F9828C8BB67000D639A /* NavigationControllerBuilder.swift in Sources */,
 				042E3A9128ACD5B700D50AC3 /* AppDelegate.swift in Sources */,
+				1BF6DB1928CE73D500A39EBA /* AlbumRouter.swift in Sources */,
 				042E3A9328ACD5B700D50AC3 /* SceneDelegate.swift in Sources */,
 				1B809FA328C8BFE0000D639A /* AlbumSectionType.swift in Sources */,
 			);
