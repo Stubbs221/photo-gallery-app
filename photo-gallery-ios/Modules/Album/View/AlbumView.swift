@@ -12,6 +12,7 @@ protocol AlbumViewInput {
     var output: AlbumViewOutput? { get set }
     
     var dataSource: DataSource? { get set }
+    
 }
 
 protocol AlbumViewOutput {
@@ -22,13 +23,24 @@ class AlbumView: UIViewController, AlbumViewInput {
     
     var output: AlbumViewOutput?
     
-    var dataSource: DataSource?
+    var dataSource: DataSource? {
+        didSet {
+            collection?.collectionView.reloadData()
+        }
+    }
+    
+    var collection: UICollectionViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupNavigation()
         setupCollection()
+        PHPhotoLibrary.shared().register(self)
+    }
+    
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     func setupCollection() {
@@ -43,8 +55,12 @@ class AlbumView: UIViewController, AlbumViewInput {
             Cell.albumCount.text = itemModel.albumCount
             return Cell
         }
-        let collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
+        collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
         
+        guard let collection = collection else {
+            return
+        }
+
         add(child: collection, container: view)
     }
     

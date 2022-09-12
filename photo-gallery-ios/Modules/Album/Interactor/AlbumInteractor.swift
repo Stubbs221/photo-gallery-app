@@ -16,7 +16,9 @@ protocol AlbumInteractorInput {
 }
 
 protocol AlbumInteractorOutput: AnyObject {
-    
+    func interactorDidFetchPhotoAssets(with photoResult: (Result<[PHFetchResult<PHAsset>], Swift.Error>), collectionResult: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
+//    func interactorDidFetchAllPhotoAssets(with result: (Result<[PHFetchResult<PHAsset>], Swift.Error>))
+//    func interactorDidFetchSmartAlbumsAssets(with result: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
 }
 
 final class AlbumInteractor: AlbumInteractorInput {
@@ -44,6 +46,13 @@ final class AlbumInteractor: AlbumInteractorInput {
         userCollections = PHAssetCollection.fetchAssetCollections(with: .album,
                                                                   subtype: .albumRegular,
                                                                   options: nil)
+        
+        guard let output = output else {
+            print("output is not initiated")
+            return
+        }
+        output.interactorDidFetchPhotoAssets(with: .success([allPhotos]), collectionResult: .success([smartAlbums, userCollections]))
+
     }
     
     func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

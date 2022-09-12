@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+struct Section {
+    var items: [ItemModel]
+}
+
 struct ItemModel {
     var photoView: UIImageView
     var albumTitle: String

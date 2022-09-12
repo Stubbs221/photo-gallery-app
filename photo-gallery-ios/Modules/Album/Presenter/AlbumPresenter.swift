@@ -13,7 +13,7 @@ protocol AlbumPresenterInput {
 }
 
 protocol AlbumPresenterOutput: AnyObject {
-    
+    func presenterConvertFetchedAssets()
 }
 
 final class AlbumPresenter {
@@ -45,5 +45,10 @@ extension AlbumPresenter: AlbumViewOutput {
 }
 
 extension AlbumPresenter: AlbumInteractorOutput {
+    func interactorDidFetchPhotoAssets(with photoResult: (Result<[PHFetchResult<PHAsset>], Error>), collectionResult: (Result<[PHFetchResult<PHAssetCollection>], Error>)) {
+        
+    }
+    
+    
     
 }
