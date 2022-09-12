@@ -8,7 +8,8 @@
 import Foundation
 
 struct DataSource {
-    var sections: [AlbumSectionType]
+    
+    var sections: [Section]
     
     func numberOfSections() -> Int {
         return sections.count
@@ -16,8 +17,14 @@ struct DataSource {
     
     func numberOfItems(in section: Int) -> Int {
         guard section < sections.count else { return 0 }
-        return sections[section].items?.count
+        return sections[section].items.count
     }
     
-    func
+    func item(at indexPath: IndexPath) -> ItemModel {
+        return sections[indexPath.section].items[indexPath.row]
+    }
+    
+  
 }
+
+

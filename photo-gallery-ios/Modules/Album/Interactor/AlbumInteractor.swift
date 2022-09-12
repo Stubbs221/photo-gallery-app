@@ -9,9 +9,10 @@ import Foundation
 import Photos
 
 protocol AlbumInteractorInput {
-    var output: AlbumPresenterOutput? { get set }
+    var output: AlbumInteractorOutput? { get set }
     
     func fetchAlbumData()
+    func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void)
 }
 
 protocol AlbumInteractorOutput: AnyObject {
@@ -20,7 +21,7 @@ protocol AlbumInteractorOutput: AnyObject {
 
 final class AlbumInteractor: AlbumInteractorInput {
     
-    weak var output: AlbumPresenterOutput?
+    weak var output: AlbumInteractorOutput?
     
     var sections: [AlbumSectionType] = [.all, .smartAlbums, .userCollections]
     
@@ -43,5 +44,19 @@ final class AlbumInteractor: AlbumInteractorInput {
         userCollections = PHAssetCollection.fetchAssetCollections(with: .album,
                                                                   subtype: .albumRegular,
                                                                   options: nil)
+    }
+    
+    func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {
+        
+        guard PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized else {
+            print("PHPhoto Lib status isnt authorized")
+            completionHandler(true)
+            return
+        }
+        
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            print("Authorization requested")
+            completionHandler(status == .authorized)
+        }
     }
 }

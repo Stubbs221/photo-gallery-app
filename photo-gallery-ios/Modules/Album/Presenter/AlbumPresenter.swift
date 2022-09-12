@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Photos
 
 protocol AlbumPresenterInput {
     var output: AlbumPresenterOutput? { get set }
@@ -28,7 +29,13 @@ final class AlbumPresenter {
         self.interactor = interactor
         self.router = router
         
-        interactor.fetchAlbumData()
+        interactor.getPermissionIfNecessary { granted in
+            guard granted else { return }
+            self.interactor.fetchAlbumData()
+        }
+        
+        
+        
     }
    
 }

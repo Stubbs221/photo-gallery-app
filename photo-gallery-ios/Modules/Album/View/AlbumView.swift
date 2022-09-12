@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Photos
 
 protocol AlbumViewInput {
     var output: AlbumViewOutput? { get set }
+    
+    var dataSource: DataSource? { get set }
 }
 
 protocol AlbumViewOutput {
@@ -19,21 +22,27 @@ class AlbumView: UIViewController, AlbumViewInput {
     
     var output: AlbumViewOutput?
     
+    var dataSource: DataSource?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupNavigation()
         setupCollection()
-        // Do any additional setup after loading the view.
     }
     
     func setupCollection() {
         
-        let dataSource = DataSource(sections: [.all, .smartAlbums, .userCollections])
-        let configurator = Configurator { (cell, model: String, collectionView, indexPath) -> AlbumViewCell in
-            cell.albumCount.text = model
-            cell.albumTitle.text = model
-            return cell
+        guard let dataSource = dataSource else {
+            return
         }
-        
+
+        let configurator = Configurator { (Cell, itemModel, collectionView, indexPath) -> AlbumViewCell in
+            Cell.photoView.image = itemModel.photoView.image
+            Cell.albumTitle.text = itemModel.albumTitle
+            Cell.albumCount.text = itemModel.albumCount
+            return Cell
+        }
         let collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
         
         add(child: collection, container: view)
@@ -45,14 +54,4 @@ class AlbumView: UIViewController, AlbumViewInput {
         configure(child.view)
         child.didMove(toParent: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

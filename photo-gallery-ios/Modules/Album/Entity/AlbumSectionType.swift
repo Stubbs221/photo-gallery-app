@@ -18,3 +18,7 @@ enum AlbumSectionType: Int, CustomStringConvertible {
         }
     }
 }
+
+struct Section {
+    var items: [ItemModel]
+}

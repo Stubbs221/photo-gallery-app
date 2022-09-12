@@ -12,7 +12,10 @@ typealias NavigationFactory = (UIViewController) -> (UINavigationController)
 class NaviagationBuilder {
     static func build(rootView:  UIViewController) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootView)
-        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.prefersLargeTitles = true
+        let largeTiteAttributes: [NSAttributedString.Key: Any] = [ .foregroundColor: UIColor.white]
+        navigationController.navigationBar.largeTitleTextAttributes = largeTiteAttributes
+//        navigationController.navigationBar.tintColor = .white
         return navigationController
     }
 }

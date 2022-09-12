@@ -18,7 +18,6 @@ final class AlbumRouter: AlbumRouterInput {
     weak var rootViewController: UIViewController?
     
     func showModule(with view: UIViewController) {
-        <#code#>
     }
     
 }
