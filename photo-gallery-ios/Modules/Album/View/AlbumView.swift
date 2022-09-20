@@ -26,7 +26,8 @@ class AlbumView: UIViewController, AlbumViewInput {
     
     var dataSource: DataSource? {
         didSet {
-            collection?.collectionView.reloadData()
+            setupCollection()
+//            collection?.collectionView.reloadData()
         }
     }
     
@@ -36,7 +37,7 @@ class AlbumView: UIViewController, AlbumViewInput {
         super.viewDidLoad()
         setupUI()
         setupNavigation()
-        setupCollection()
+        
 //        PHPhotoLibrary.shared().register(self)
     }
     
@@ -56,9 +57,15 @@ class AlbumView: UIViewController, AlbumViewInput {
             Cell.albumCount.text = itemModel.albumCount
             return Cell
         }
+        
+        
         collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
         
+//        let layout = UICollectionViewFlowLayout()
+        
+//        collection?.collectionViewLayout = layout
         guard let collection = collection else {
+            print("collection is nil")
             return
         }
 
@@ -70,6 +77,15 @@ class AlbumView: UIViewController, AlbumViewInput {
         container.addSubview(child.view)
         configure(child.view)
         child.didMove(toParent: self)
+        
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            child.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
     }
     
     func updateDataSource(with dataSource: DataSource) {
