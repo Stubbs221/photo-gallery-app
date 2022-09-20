@@ -16,9 +16,9 @@ protocol AlbumInteractorInput {
 }
 
 protocol AlbumInteractorOutput: AnyObject {
-    func interactorDidFetchPhotoAssets(with photoResult: (Result<[PHFetchResult<PHAsset>], Swift.Error>), collectionResult: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
-//    func interactorDidFetchAllPhotoAssets(with result: (Result<[PHFetchResult<PHAsset>], Swift.Error>))
-//    func interactorDidFetchSmartAlbumsAssets(with result: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
+    func interactorDidFetchPhotoAssets(with photoResult: PHFetchResult<PHAsset>, collectionResult: [PHFetchResult<PHAssetCollection>])
+    //    func interactorDidFetchAllPhotoAssets(with result: (Result<[PHFetchResult<PHAsset>], Swift.Error>))
+    //    func interactorDidFetchSmartAlbumsAssets(with result: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
 }
 
 final class AlbumInteractor: AlbumInteractorInput {
@@ -27,9 +27,9 @@ final class AlbumInteractor: AlbumInteractorInput {
     
     var sections: [AlbumSectionType] = [.all, .smartAlbums, .userCollections]
     
-    private var allPhotos = PHFetchResult<PHAsset>()
-    private var smartAlbums = PHFetchResult<PHAssetCollection>()
-    private var userCollections = PHFetchResult<PHAssetCollection>()
+//    private var allPhotos = PHFetchResult<PHAsset>()
+//    private var smartAlbums = PHFetchResult<PHAssetCollection>()
+//    private var userCollections = PHFetchResult<PHAssetCollection>()
     
     func fetchAlbumData() {
         print("start fetching photo data")
@@ -38,12 +38,12 @@ final class AlbumInteractor: AlbumInteractorInput {
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         
-        allPhotos = PHAsset.fetchAssets(with: allPhotosOptioins)
+        let allPhotos = PHAsset.fetchAssets(with: allPhotosOptioins)
         
-        smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
+        let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
                                                               subtype: .albumRegular,
                                                               options: nil)
-        userCollections = PHAssetCollection.fetchAssetCollections(with: .album,
+        let userCollections = PHAssetCollection.fetchAssetCollections(with: .album,
                                                                   subtype: .albumRegular,
                                                                   options: nil)
         
@@ -51,8 +51,8 @@ final class AlbumInteractor: AlbumInteractorInput {
             print("output is not initiated")
             return
         }
-        output.interactorDidFetchPhotoAssets(with: .success([allPhotos]), collectionResult: .success([smartAlbums, userCollections]))
-
+        output.interactorDidFetchPhotoAssets(with: allPhotos, collectionResult: [smartAlbums, userCollections])
+        
     }
     
     func getPermissionIfNecessary(completionHandler: @escaping (Bool) -> Void) {

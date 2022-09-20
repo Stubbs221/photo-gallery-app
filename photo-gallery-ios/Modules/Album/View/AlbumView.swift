@@ -36,12 +36,12 @@ class AlbumView: UIViewController, AlbumViewInput {
         setupUI()
         setupNavigation()
         setupCollection()
-        PHPhotoLibrary.shared().register(self)
+//        PHPhotoLibrary.shared().register(self)
     }
     
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
-    }
+//    deinit {
+//        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+//    }
     
     func setupCollection() {
         
