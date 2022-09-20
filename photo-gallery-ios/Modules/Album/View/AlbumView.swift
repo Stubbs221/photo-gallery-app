@@ -13,6 +13,7 @@ protocol AlbumViewInput {
     
     var dataSource: DataSource? { get set }
     
+    func updateDataSource(with dataSource: DataSource)
 }
 
 protocol AlbumViewOutput {
@@ -50,7 +51,7 @@ class AlbumView: UIViewController, AlbumViewInput {
         }
 
         let configurator = Configurator { (Cell, itemModel, collectionView, indexPath) -> AlbumViewCell in
-            Cell.photoView.image = itemModel.photoView.image
+            Cell.photoView.image = itemModel.photoView
             Cell.albumTitle.text = itemModel.albumTitle
             Cell.albumCount.text = itemModel.albumCount
             return Cell
@@ -69,5 +70,11 @@ class AlbumView: UIViewController, AlbumViewInput {
         container.addSubview(child.view)
         configure(child.view)
         child.didMove(toParent: self)
+    }
+    
+    func updateDataSource(with dataSource: DataSource) {
+        self.dataSource = dataSource
+        print("dataSource fetched successfuly")
+        
     }
 }

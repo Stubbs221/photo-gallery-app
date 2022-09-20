@@ -35,10 +35,14 @@ final class AlbumPresenter {
         self.router = router
         
         interactor.getPermissionIfNecessary { [ weak self ] granted in
-            
+
             guard granted,
             let self = self else { return }
-            self.interactor.fetchAlbumData()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.interactor.fetchAlbumData()
+            }
+            
         }
         
         
@@ -69,8 +73,18 @@ final class AlbumPresenter {
         return convertedImage
     }
     
-    private func fillSection() -> Section {
+    private func fillSection(from collection: PHFetchResult<PHAssetCollection>) -> Section {
         var section = Section(items: [])
+        var items: [ItemModel] = []
+        
+        collection.enumerateObjects { collection, numb, pointer in
+            let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
+            let item = ItemModel(photoView: fetchedAssets.firstObject.map({ asset in
+                self.fetchImageAsset(asset, targetSize: CGSize(width: 50, height: 50), completionHandler: nil)
+            }))
+            items.append(item)
+        }
+        section.items = items
         return section
     }
     
@@ -90,12 +104,20 @@ extension AlbumPresenter: AlbumInteractorOutput {
               let smartAlbums = self.smartAlbums,
               let userCollections = self.userCollections else { return }
         
-//        let photoResultAsset = photoResult.firstObject
-        var Item = ItemModel(photoView: self.photoResult?.firstObject.map {
+        var dataSource = DataSource(sections: [])
+        
+        
+        var allPhotosItem = ItemModel(photoView: self.photoResult?.firstObject.map {
             fetchImageAsset($0, targetSize: CGSize(width: 50, height: 50)) { success in
                 success ? print("emptyView must be hidden") : print("photoView must be hidden")
             } 
         })
+        
+        dataSource.sections.append(Section(items: [allPhotosItem]))
+        dataSource.sections.append(fillSection(from: smartAlbums))
+        dataSource.sections.append(fillSection(from: userCollections))
+        
+        view.updateDataSource(with: dataSource)
         
         
         
