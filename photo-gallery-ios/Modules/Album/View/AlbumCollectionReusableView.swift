@@ -38,11 +38,12 @@ class AlbumCollectionReusableView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure() {
+    public func configure(with text: String) {
         addSubview(labelView)
+        titleLabel.text = text
         labelView.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: labelView.leadingAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: labelView.leadingAnchor, constant: 5),
             titleLabel.topAnchor.constraint(equalTo: labelView.topAnchor, constant: 5),
             titleLabel.bottomAnchor.constraint(equalTo: labelView.bottomAnchor, constant: -5)])
     }

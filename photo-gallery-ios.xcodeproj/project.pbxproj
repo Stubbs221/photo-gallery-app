@@ -17,6 +17,10 @@
 		1B809FA328C8BFE0000D639A /* AlbumSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B809FA228C8BFE0000D639A /* AlbumSectionType.swift */; };
 		1B809FA528C8C1C7000D639A /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B809FA428C8C1C7000D639A /* AlbumView.swift */; };
 		1B809FA728C8C313000D639A /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B809FA628C8C312000D639A /* DataSource.swift */; };
+		1B8F92CD28DCC7D50021DCED /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92CC28DCC7D50021DCED /* PhotosView.swift */; };
+		1B8F92CF28DCC7E10021DCED /* PhotosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92CE28DCC7E10021DCED /* PhotosInteractor.swift */; };
+		1B8F92D128DCC7EB0021DCED /* PhotosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92D028DCC7EB0021DCED /* PhotosPresenter.swift */; };
+		1B8F92D328DCC7F70021DCED /* PhotosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92D228DCC7F70021DCED /* PhotosRouter.swift */; };
 		1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */; };
 		1B8FE8DC28C8D0E90081CF08 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */; };
 		1B9F77C428CF523F0083DAB8 /* AlbumView + SetupUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9F77C328CF523F0083DAB8 /* AlbumView + SetupUI.swift */; };
@@ -43,6 +47,10 @@
 		1B809FA228C8BFE0000D639A /* AlbumSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSectionType.swift; sourceTree = "<group>"; };
 		1B809FA428C8C1C7000D639A /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		1B809FA628C8C312000D639A /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		1B8F92CC28DCC7D50021DCED /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
+		1B8F92CE28DCC7E10021DCED /* PhotosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInteractor.swift; sourceTree = "<group>"; };
+		1B8F92D028DCC7EB0021DCED /* PhotosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPresenter.swift; sourceTree = "<group>"; };
+		1B8F92D228DCC7F70021DCED /* PhotosRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRouter.swift; sourceTree = "<group>"; };
 		1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginCollectionViewController.swift; sourceTree = "<group>"; };
 		1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		1B9F77C328CF523F0083DAB8 /* AlbumView + SetupUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumView + SetupUI.swift"; sourceTree = "<group>"; };
@@ -110,6 +118,7 @@
 		1B809F9528C8BB46000D639A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1BB739F228DCC72500563D46 /* Photos */,
 				1B809F9928C8BD4B000D639A /* Album */,
 				1B809F9628C8BB4D000D639A /* Navigation */,
 			);
@@ -193,6 +202,57 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		1BB739F228DCC72500563D46 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				1BB739F728DCC75A00563D46 /* View */,
+				1BB739F628DCC74F00563D46 /* Interactor */,
+				1BB739F528DCC73F00563D46 /* Presenter */,
+				1BB739F428DCC73700563D46 /* Entity */,
+				1BB739F328DCC73100563D46 /* Router */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		1BB739F328DCC73100563D46 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				1B8F92D228DCC7F70021DCED /* PhotosRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		1BB739F428DCC73700563D46 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		1BB739F528DCC73F00563D46 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B8F92D028DCC7EB0021DCED /* PhotosPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1BB739F628DCC74F00563D46 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				1B8F92CE28DCC7E10021DCED /* PhotosInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		1BB739F728DCC75A00563D46 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B8F92CC28DCC7D50021DCED /* PhotosView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -263,14 +323,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B8F92CD28DCC7D50021DCED /* PhotosView.swift in Sources */,
 				1BF6DB1D28CF21B800A39EBA /* ItemModel.swift in Sources */,
 				1B809FA728C8C313000D639A /* DataSource.swift in Sources */,
 				1B8FE8DC28C8D0E90081CF08 /* Configurator.swift in Sources */,
 				1BF6DB1B28CE745300A39EBA /* AlbumInteractor.swift in Sources */,
+				1B8F92D128DCC7EB0021DCED /* PhotosPresenter.swift in Sources */,
 				1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */,
+				1B8F92D328DCC7F70021DCED /* PhotosRouter.swift in Sources */,
 				1B9F77C628CF73BC0083DAB8 /* AlbumCollectionReusableView.swift in Sources */,
 				1BF6DB1528CE72A800A39EBA /* AlbumModuleBuilder.swift in Sources */,
 				1BF6DB1728CE735700A39EBA /* AlbumPresenter.swift in Sources */,
+				1B8F92CF28DCC7E10021DCED /* PhotosInteractor.swift in Sources */,
 				1B809FA528C8C1C7000D639A /* AlbumView.swift in Sources */,
 				1BF6DAC928CBB0FE00A39EBA /* AlbumViewCell.swift in Sources */,
 				1B15EAE128D9E43200360129 /* CollectionViewFlowLayout.swift in Sources */,

@@ -78,8 +78,8 @@ class AlbumView: UIViewController, AlbumViewInput {
         NSLayoutConstraint.activate([
             child.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
         ])
     }
     

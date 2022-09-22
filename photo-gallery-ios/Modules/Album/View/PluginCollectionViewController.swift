@@ -51,7 +51,7 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumCollectionReusableView.reuseIdentifier, for: indexPath) as! AlbumCollectionReusableView
         
-        header.configure()
+        header.configure(with: dataSource.sectionDescription[indexPath.section].description)
         
         return header
     }

@@ -25,7 +25,7 @@ struct CollectionViewFlowLayoutType {
     var sectionInsets: UIEdgeInsets {
         switch viewType {
         case .album:
-            return UIEdgeInsets(top: 4.0, left: 16, bottom: 4.0, right: 16)
+            return UIEdgeInsets(top: 4.0, left: 5, bottom: 4.0, right: 5)
         case .photos:
             return UIEdgeInsets(top: 2.0, left: 2.0, bottom: 2.0, right: 2.0)
         }

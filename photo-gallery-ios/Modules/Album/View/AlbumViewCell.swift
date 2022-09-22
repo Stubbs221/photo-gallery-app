@@ -93,7 +93,7 @@ class AlbumViewCell: UICollectionViewCell {
             albumTitle.bottomAnchor.constraint(equalTo: albumCount.topAnchor, constant: 0)])
         NSLayoutConstraint.activate([
             albumCount.leadingAnchor.constraint(equalTo: albumTitle.leadingAnchor),
-            albumCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4)])
+            albumCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -0)])
     }
     
     override init(frame: CGRect) {

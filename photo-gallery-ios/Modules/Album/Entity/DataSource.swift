@@ -10,6 +10,7 @@ import Foundation
 struct DataSource {
     
     var sections: [Section]
+    var sectionDescription: [AlbumSectionType] = [.all, .smartAlbums, .userCollections]
     
     func numberOfSections() -> Int {
         return sections.count
