@@ -14,6 +14,6 @@ struct Section {
 
 struct ItemModel {
     var photoView: UIImage?
-    var albumTitle: String = "default"
+    var albumTitle: String? = "default" 
     var albumCount: String = "default"
 }

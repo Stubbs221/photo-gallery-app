@@ -27,7 +27,6 @@ class AlbumView: UIViewController, AlbumViewInput {
     var dataSource: DataSource? {
         didSet {
             setupCollection()
-//            collection?.collectionView.reloadData()
         }
     }
     
@@ -58,12 +57,8 @@ class AlbumView: UIViewController, AlbumViewInput {
             return Cell
         }
         
-        
         collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
         
-//        let layout = UICollectionViewFlowLayout()
-        
-//        collection?.collectionViewLayout = layout
         guard let collection = collection else {
             print("collection is nil")
             return
@@ -83,8 +78,8 @@ class AlbumView: UIViewController, AlbumViewInput {
         NSLayoutConstraint.activate([
             child.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
     }
     

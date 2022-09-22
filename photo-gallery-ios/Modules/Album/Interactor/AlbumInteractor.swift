@@ -17,8 +17,6 @@ protocol AlbumInteractorInput {
 
 protocol AlbumInteractorOutput: AnyObject {
     func interactorDidFetchPhotoAssets(with photoResult: PHFetchResult<PHAsset>, collectionResult: [PHFetchResult<PHAssetCollection>])
-    //    func interactorDidFetchAllPhotoAssets(with result: (Result<[PHFetchResult<PHAsset>], Swift.Error>))
-    //    func interactorDidFetchSmartAlbumsAssets(with result: (Result<[PHFetchResult<PHAssetCollection>], Swift.Error>))
 }
 
 final class AlbumInteractor: AlbumInteractorInput {
@@ -26,10 +24,6 @@ final class AlbumInteractor: AlbumInteractorInput {
     weak var output: AlbumInteractorOutput?
     
     var sections: [AlbumSectionType] = [.all, .smartAlbums, .userCollections]
-    
-//    private var allPhotos = PHFetchResult<PHAsset>()
-//    private var smartAlbums = PHFetchResult<PHAssetCollection>()
-//    private var userCollections = PHFetchResult<PHAssetCollection>()
     
     func fetchAlbumData() {
         print("start fetching photo data")

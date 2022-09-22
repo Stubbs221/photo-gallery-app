@@ -39,7 +39,7 @@ final class AlbumPresenter {
             guard granted,
             let self = self else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 self.interactor.fetchAlbumData()
             }
             
@@ -81,7 +81,8 @@ final class AlbumPresenter {
             let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
             let item = ItemModel(photoView: fetchedAssets.firstObject.map({ asset in
                 self.fetchImageAsset(asset, targetSize: CGSize(width: 50, height: 50), completionHandler: nil)
-            }))
+            }), albumTitle: collection.localizedTitle ?? "Untitled", albumCount: String(fetchedAssets.count))
+           
             items.append(item)
         }
         section.items = items
@@ -111,7 +112,7 @@ extension AlbumPresenter: AlbumInteractorOutput {
             fetchImageAsset($0, targetSize: CGSize(width: 50, height: 50)) { success in
                 success ? print("emptyView must be hidden") : print("photoView must be hidden")
             } 
-        })
+        }, albumTitle: "All Photos", albumCount: String(self.photoResult?.count ?? 0))
         
         dataSource.sections.append(Section(items: [allPhotosItem]))
         dataSource.sections.append(fillSection(from: smartAlbums))

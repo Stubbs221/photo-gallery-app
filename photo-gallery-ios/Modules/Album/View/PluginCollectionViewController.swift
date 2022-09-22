@@ -16,20 +16,14 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     
     let layout = UICollectionViewFlowLayout()
     
-//    let collectionView: UICollectionView!
-    
     init(dataSource: DataSource, configurator: Configurator) {
         self.dataSource = dataSource
+        
         self.configurator = configurator
-//        super.init(nibName: nil, bundle: nil)
         super.init(collectionViewLayout: layout)
-//        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-//                layout.itemSize = CGSize(width: 111, height: 111)
-//
-//        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
-//
-//
         configurator.registerCells(in: collectionView)
+        collectionView.register(AlbumCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumCollectionReusableView.reuseIdentifier)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -38,13 +32,11 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         dataSource.numberOfSections()
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.numberOfItems(in: section)
@@ -56,18 +48,35 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
         return configurator.configuredCell(for: item, collectionView: collectionView, indexPath: indexPath)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AlbumCollectionReusableView.reuseIdentifier, for: indexPath) as! AlbumCollectionReusableView
+        
+        header.configure()
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.size.width,
+                      height: 40)
+    }
+    
 //    MARK: - Flow Layout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CollectionViewFlowLayoutType(.album, frame: view.frame).sizeForItemAt
     }
-    
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return CollectionViewFlowLayoutType(.album, frame: view.frame).sectionInsets
+
+
     }
-    
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CollectionViewFlowLayoutType(.album, frame: view.frame).sectionInsets.left
     }
+    
+    
 }
 

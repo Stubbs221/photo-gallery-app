@@ -9,10 +9,10 @@ import Foundation
 
 extension AlbumView {
     func setupUI() {
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
     }
     
     func setupNavigation() {
-        navigationController?.navigationBar.topItem?.title = "Albums"
+        navigationController?.navigationBar.topItem?.title = "Albums!"
     }
 }
