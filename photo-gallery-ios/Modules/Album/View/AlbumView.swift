@@ -58,7 +58,7 @@ class AlbumView: UIViewController, AlbumViewInput {
         }
         
         collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
-        
+        collection?.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: self.view.frame.minX - 5 )
         guard let collection = collection else {
             print("collection is nil")
             return
@@ -80,6 +80,7 @@ class AlbumView: UIViewController, AlbumViewInput {
             child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+            
         ])
     }
     

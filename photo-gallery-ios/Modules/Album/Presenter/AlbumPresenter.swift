@@ -35,9 +35,9 @@ final class AlbumPresenter {
         self.router = router
         
         interactor.getPermissionIfNecessary { [ weak self ] granted in
-
+            
             guard granted,
-            let self = self else { return }
+                  let self = self else { return }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 self.interactor.fetchAlbumData()
@@ -49,13 +49,18 @@ final class AlbumPresenter {
         
     }
     
-    private func fetchImageAsset(_ asset: PHAsset?, targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, options: PHImageRequestOptions? = nil, completionHandler: ((Bool) -> Void)?) -> UIImage {
+    private func fetchImageAsset(_ asset: PHAsset?, targetSize size: CGSize, contentMode: PHImageContentMode = .aspectFill, completionHandler: ((Bool) -> Void)?) -> UIImage {
         guard let asset = asset else {
             completionHandler?(false)
             return UIImage()
         }
         
         var convertedImage: UIImage = UIImage()
+        
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.resizeMode = PHImageRequestOptionsResizeMode.exact
+        options.isSynchronous = true
         
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, info in
             guard let image = image else { return }
@@ -80,9 +85,9 @@ final class AlbumPresenter {
         collection.enumerateObjects { collection, numb, pointer in
             let fetchedAssets = PHAsset.fetchAssets(in: collection, options: nil)
             let item = ItemModel(photoView: fetchedAssets.firstObject.map({ asset in
-                self.fetchImageAsset(asset, targetSize: CGSize(width: 50, height: 50), completionHandler: nil)
+                self.fetchImageAsset(asset, targetSize: CGSize(width: 200, height: 200), completionHandler: nil)
             }), albumTitle: collection.localizedTitle ?? "Untitled", albumCount: String(fetchedAssets.count))
-           
+            
             items.append(item)
         }
         section.items = items
@@ -109,10 +114,12 @@ extension AlbumPresenter: AlbumInteractorOutput {
         
         
         var allPhotosItem = ItemModel(photoView: self.photoResult?.firstObject.map {
-            fetchImageAsset($0, targetSize: CGSize(width: 50, height: 50)) { success in
+        
+            fetchImageAsset($0, targetSize: CGSize(width: 200, height: 200)) { success in
                 success ? print("emptyView must be hidden") : print("photoView must be hidden")
-            } 
+            }
         }, albumTitle: "All Photos", albumCount: String(self.photoResult?.count ?? 0))
+        
         
         dataSource.sections.append(Section(items: [allPhotosItem]))
         dataSource.sections.append(fillSection(from: smartAlbums))

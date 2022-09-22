@@ -32,6 +32,7 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -59,6 +60,13 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.size.width,
                       height: 40)
+    }
+    
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        #warning("put logic to throw image data to parentVC here")
+        
     }
     
 //    MARK: - Flow Layout

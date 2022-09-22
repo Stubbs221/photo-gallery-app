@@ -27,6 +27,9 @@ final class AlbumInteractor: AlbumInteractorInput {
     
     func fetchAlbumData() {
         print("start fetching photo data")
+        
+       
+        
         let allPhotosOptioins = PHFetchOptions()
         allPhotosOptioins.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)

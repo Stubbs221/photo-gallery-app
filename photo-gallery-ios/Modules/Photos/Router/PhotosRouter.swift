@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import UIKit
+
+protocol PhotosRouterInput {
+    func showModule(with view: UIViewController)
+}
+
+final class PhotosRouter: PhotosRouterInput {
+    
+    weak var rootViewController: UIViewController?
+    
+    func showModule(with view: UIViewController) {
+        
+    }
+}
