@@ -11,14 +11,16 @@ private let reuseIdentifier = "Cell"
 
 class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    
+    let albumViewDelegate: AlbumViewInput
     let dataSource: DataSource
     let configurator: Configurator
     
     let layout = UICollectionViewFlowLayout()
     
-    init(dataSource: DataSource, configurator: Configurator) {
+    init(viewDelegate: AlbumViewInput, dataSource: DataSource, configurator: Configurator) {
         self.dataSource = dataSource
-        
+        self.albumViewDelegate = viewDelegate
         self.configurator = configurator
         super.init(collectionViewLayout: layout)
         configurator.registerCells(in: collectionView)
@@ -66,7 +68,7 @@ class PluginCollectionViewController<Configurator: ConfiguratorType>: UICollecti
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         #warning("put logic to throw image data to parentVC here")
-        
+        self.albumViewDelegate.output?.userSelectOpenPhotosView(with: dataSource.sectionDescription[indexPath.section])
     }
     
 //    MARK: - Flow Layout

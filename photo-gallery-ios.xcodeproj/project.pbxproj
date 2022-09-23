@@ -21,6 +21,7 @@
 		1B8F92CF28DCC7E10021DCED /* PhotosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92CE28DCC7E10021DCED /* PhotosInteractor.swift */; };
 		1B8F92D128DCC7EB0021DCED /* PhotosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92D028DCC7EB0021DCED /* PhotosPresenter.swift */; };
 		1B8F92D328DCC7F70021DCED /* PhotosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92D228DCC7F70021DCED /* PhotosRouter.swift */; };
+		1B8F92E828DE304C0021DCED /* PhotosModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F92E728DE304C0021DCED /* PhotosModuleBuilder.swift */; };
 		1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */; };
 		1B8FE8DC28C8D0E90081CF08 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */; };
 		1B9F77C428CF523F0083DAB8 /* AlbumView + SetupUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9F77C328CF523F0083DAB8 /* AlbumView + SetupUI.swift */; };
@@ -51,6 +52,7 @@
 		1B8F92CE28DCC7E10021DCED /* PhotosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInteractor.swift; sourceTree = "<group>"; };
 		1B8F92D028DCC7EB0021DCED /* PhotosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPresenter.swift; sourceTree = "<group>"; };
 		1B8F92D228DCC7F70021DCED /* PhotosRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRouter.swift; sourceTree = "<group>"; };
+		1B8F92E728DE304C0021DCED /* PhotosModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModuleBuilder.swift; sourceTree = "<group>"; };
 		1B8FE8D828C8D0680081CF08 /* PluginCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginCollectionViewController.swift; sourceTree = "<group>"; };
 		1B8FE8DB28C8D0E90081CF08 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		1B9F77C328CF523F0083DAB8 /* AlbumView + SetupUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumView + SetupUI.swift"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		1BB739F228DCC72500563D46 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				1B8F92E728DE304C0021DCED /* PhotosModuleBuilder.swift */,
 				1BB739F728DCC75A00563D46 /* View */,
 				1BB739F628DCC74F00563D46 /* Interactor */,
 				1BB739F528DCC73F00563D46 /* Presenter */,
@@ -332,6 +335,7 @@
 				1B8FE8D928C8D0680081CF08 /* PluginCollectionViewController.swift in Sources */,
 				1B8F92D328DCC7F70021DCED /* PhotosRouter.swift in Sources */,
 				1B9F77C628CF73BC0083DAB8 /* AlbumCollectionReusableView.swift in Sources */,
+				1B8F92E828DE304C0021DCED /* PhotosModuleBuilder.swift in Sources */,
 				1BF6DB1528CE72A800A39EBA /* AlbumModuleBuilder.swift in Sources */,
 				1BF6DB1728CE735700A39EBA /* AlbumPresenter.swift in Sources */,
 				1B8F92CF28DCC7E10021DCED /* PhotosInteractor.swift in Sources */,

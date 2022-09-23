@@ -29,6 +29,10 @@ final class AlbumPresenter {
     var smartAlbums: PHFetchResult<PHAssetCollection>?
     var userCollections: PHFetchResult<PHAssetCollection>?
     
+    var allPhotosSection: Section = Section(items: [])
+    var smartAlbumsSection: Section = Section(items: [])
+    var userCollectionsSection: Section = Section(items: [])
+    
     init(view: AlbumViewInput, interactor: AlbumInteractorInput, router: AlbumRouterInput) {
         self.view = view
         self.interactor = interactor
@@ -97,6 +101,17 @@ final class AlbumPresenter {
 }
 
 extension AlbumPresenter: AlbumViewOutput {
+    func userSelectOpenPhotosView(with section: AlbumSectionType) {
+        var photosDataSource: DataSource
+        switch section {
+        case .all: photosDataSource = DataSource(sections: [allPhotosSection])
+        case .smartAlbums: photosDataSource = DataSource(sections: [smartAlbumsSection])
+        case .userCollections: photosDataSource = DataSource(sections: [userCollectionsSection])
+        }
+        
+        router.showModule(with: photosDataSource)
+    }
+    
     
 }
 
@@ -112,18 +127,20 @@ extension AlbumPresenter: AlbumInteractorOutput {
         
         var dataSource = DataSource(sections: [])
         
-        
-        var allPhotosItem = ItemModel(photoView: self.photoResult?.firstObject.map {
-        
+        allPhotosSection.items.append(ItemModel(photoView: self.photoResult?.firstObject.map {
+            
             fetchImageAsset($0, targetSize: CGSize(width: 200, height: 200)) { success in
                 success ? print("emptyView must be hidden") : print("photoView must be hidden")
             }
-        }, albumTitle: "All Photos", albumCount: String(self.photoResult?.count ?? 0))
+        }, albumTitle: "All Photos", albumCount: String(self.photoResult?.count ?? 0)))
+//        var allPhotosItem =
         
+        smartAlbumsSection = fillSection(from: smartAlbums)
+        userCollectionsSection = fillSection(from: userCollections)
         
-        dataSource.sections.append(Section(items: [allPhotosItem]))
-        dataSource.sections.append(fillSection(from: smartAlbums))
-        dataSource.sections.append(fillSection(from: userCollections))
+        dataSource.sections.append(allPhotosSection)
+        dataSource.sections.append(smartAlbumsSection)
+        dataSource.sections.append(userCollectionsSection)
         
         view.updateDataSource(with: dataSource)
         

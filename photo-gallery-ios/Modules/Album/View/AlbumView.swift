@@ -18,6 +18,7 @@ protocol AlbumViewInput {
 
 protocol AlbumViewOutput {
     
+    func userSelectOpenPhotosView(with section: AlbumSectionType)
 }
 
 class AlbumView: UIViewController, AlbumViewInput {
@@ -57,7 +58,7 @@ class AlbumView: UIViewController, AlbumViewInput {
             return Cell
         }
         
-        collection = PluginCollectionViewController(dataSource: dataSource, configurator: configurator)
+        collection = PluginCollectionViewController(viewDelegate: self ,dataSource: dataSource, configurator: configurator)
         collection?.collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: self.view.frame.minX - 5 )
         guard let collection = collection else {
             print("collection is nil")
